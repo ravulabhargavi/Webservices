@@ -1,19 +1,45 @@
 package com.htc.patientservice.model;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Patient")
 public class Patient {
+	
+	@Column
 	private Long appointmentId;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long patientId;
+	@Column
 	private String patientName;
-	private String mobileNumber;
-	private String healthStatus;
+	@Column 
+	private Date appointmentDate;
+	public Patient() {
+		super();
+	
+	}
+	
+	public Patient(Long patientId, String patientName, Date appointmentDate) {
+		super();
+		this.patientId = patientId;
+		this.patientName = patientName;
+		this.appointmentDate = appointmentDate;
+	}
+
+	public Long getAppointmentId() {
+		return appointmentId;
+	}
+	public void setAppointmentId(Long appointmentId) {
+		this.appointmentId = appointmentId;
+	}
 	public Long getPatientId() {
 		return patientId;
 	}
@@ -26,29 +52,20 @@ public class Patient {
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
 	}
-	public String getMobileNumber() {
-		return mobileNumber;
+	
+	public Date getAppointmentDate() {
+		return appointmentDate;
 	}
-	public void setMobileNumber(String mobileNumber) {
-		this.mobileNumber = mobileNumber;
+
+	public void setAppointmentDate(Date appointmentDate) {
+		this.appointmentDate = appointmentDate;
 	}
-	public String getHealthStatus() {
-		return healthStatus;
-	}
-	public void setHealthStatus(String healthStatus) {
-		this.healthStatus = healthStatus;
-	}
-	public Long getAppointmentId() {
-		return appointmentId;
-	}
-	public void setAppointmentId(Long appointmentId) {
-		this.appointmentId = appointmentId;
-	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((patientId == null) ? 0 : patientId.hashCode());
+		result = prime * result + ((appointmentId == null) ? 0 : appointmentId.hashCode());
 		return result;
 	}
 	@Override
@@ -60,17 +77,20 @@ public class Patient {
 		if (getClass() != obj.getClass())
 			return false;
 		Patient other = (Patient) obj;
-		if (patientId == null) {
-			if (other.patientId != null)
+		if (appointmentId == null) {
+			if (other.appointmentId != null)
 				return false;
-		} else if (!patientId.equals(other.patientId))
+		} else if (!appointmentId.equals(other.appointmentId))
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Patientdetails [appointmentId=" + appointmentId + ", patientId=" + patientId + ", patientName=" + patientName
-				+ ", mobileNumber=" + mobileNumber + ", healthStatus=" + healthStatus + "]";
+		return "Patient [appointmentId=" + appointmentId + ", patientId=" + patientId + ", patientName=" + patientName
+				+ ", appointmentDate=" + appointmentDate + "]";
 	}
 	
+	
 }
+	
